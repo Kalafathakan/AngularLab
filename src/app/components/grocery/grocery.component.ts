@@ -60,4 +60,8 @@ export class GroceryComponent implements OnInit {
         .includes((<HTMLInputElement>eventData.target).value.toLowerCase())
     );
   }
+
+  getTotal() {
+    return this.grocery.length;
+  }
 }
