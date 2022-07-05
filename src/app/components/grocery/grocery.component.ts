@@ -31,4 +31,23 @@ export class GroceryComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  deleteGrocery(id: number) {
+    console.log(id);
+    this.grocery = this.grocery.filter((g) => g.id !== id);
+  }
+  changeQuantity(id: number, data: number) {
+    this.grocery = this.grocery.map((g) =>
+      g.id === id
+        ? {
+            ...g,
+            quantity:
+              data > 0
+                ? g.quantity + data
+                : g.quantity > 0
+                ? g.quantity + data
+                : 0,
+          }
+        : g
+    );
+  }
 }
