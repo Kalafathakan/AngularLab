@@ -1,10 +1,16 @@
+<!-- <div>Search : <input type="text" (change)="searchGrocery($event)" /></div> -->
+<div>
+  Search : <input type="text" [(ngModel)]="searchValue" /> {{ searchValue }}
+</div>
 <div *ngFor="let g of grocery">
-  <p>id - {{ g.id }}</p>
-  <p>name - {{ g.name }}</p>
-  <p>
-    <button (click)="changeQuantity(g.id, -1)">-</button> {{ g.quantity }}
-    <button (click)="changeQuantity(g.id, 1)">+</button>
-  </p>
-  <button (click)="deleteGrocery(g.id)">X</button>
-  <hr />
+  <div *ngIf="searchValue === '' || g.name.toLowerCase().includes(searchValue)">
+    <p>id - {{ g.id }}</p>
+    <p>name - {{ g.name }}</p>
+    <p>
+      <button (click)="changeQuantity(g.id, -1)">-</button> {{ g.quantity }}
+      <button (click)="changeQuantity(g.id, 1)">+</button>
+    </p>
+    <button (click)="deleteGrocery(g.id)">X</button>
+    <hr />
+  </div>
 </div>

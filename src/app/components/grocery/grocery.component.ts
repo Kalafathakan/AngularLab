@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grocery.component.css'],
 })
 export class GroceryComponent implements OnInit {
+  searchValue: string = '';
   grocery = [
     {
       name: 'Apples',
@@ -48,6 +49,15 @@ export class GroceryComponent implements OnInit {
                 : 0,
           }
         : g
+    );
+  }
+
+  searchGrocery(eventData: Event) {
+    console.log((<HTMLInputElement>eventData.target).value);
+    this.grocery = this.grocery.filter((g) =>
+      g.name
+        .toLowerCase()
+        .includes((<HTMLInputElement>eventData.target).value.toLowerCase())
     );
   }
 }
