@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-grocery',
@@ -63,5 +65,15 @@ export class GroceryComponent implements OnInit {
 
   getTotal() {
     return this.grocery.length;
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form);
+    this.grocery.push({
+      id: 45,
+      name: form.value.name,
+      quantity: form.value.quantity,
+    });
+    form.reset();
   }
 }
