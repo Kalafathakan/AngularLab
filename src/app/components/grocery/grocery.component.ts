@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+  NgForm,
+  FormGroup,
+  FormControl,
+  Validator,
+  Validators,
+} from '@angular/forms';
 import { from } from 'rxjs';
 
 @Component({
@@ -32,6 +38,14 @@ export class GroceryComponent implements OnInit {
     },
   ];
   constructor() {}
+
+  groceryForm = new FormGroup({
+    name: new FormControl<string | null>('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    quantity: new FormControl<number | null>(null, Validators.required),
+  });
 
   ngOnInit(): void {}
   deleteGrocery(id: number) {
@@ -75,5 +89,13 @@ export class GroceryComponent implements OnInit {
       quantity: form.value.quantity,
     });
     form.reset();
+  }
+  onSubmit2() {
+    console.log(this.groceryForm);
+    this.grocery.push({
+      id: 45,
+      name: this.groceryForm.value.name!,
+      quantity: this.groceryForm.value.quantity!,
+    });
   }
 }

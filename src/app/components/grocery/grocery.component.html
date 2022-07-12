@@ -1,14 +1,14 @@
 <h2>Add Grocery - Reactive form</h2>
 
-<form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
-  Name: <input type="text" name="name" ngModel #name="ngModel" required />
+<form [formGroup]="groceryForm" (ngSubmit)="onSubmit2()">
+  Name: <input type="text" formControlName="name" />
   <br />
-  <div *ngIf="name.invalid && name.touched">Name is required</div>
-  Quantity: <input type="text" name="quantity" ngModel #quantity="ngModel" />
+  <div *ngIf="groceryForm.get('name')?.invalid">Name is required</div>
+  Quantity: <input type="text" formControlName="quantity" />
   <br />
   <input type="submit" value="Add Grocery" />
 </form>
-<h2>Add Grocery - Template driven form</h2>
+<!-- <h2>Add Grocery - Template driven form</h2>
 
 <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
   Name: <input type="text" name="name" ngModel #name="ngModel" required />
@@ -17,7 +17,7 @@
   Quantity: <input type="text" name="quantity" ngModel #quantity="ngModel" />
   <br />
   <input type="submit" value="Add Grocery" />
-</form>
+</form> -->
 <app-header [total]="getTotal()"></app-header>
 
 <!-- <div>Search : <input type="text" (change)="searchGrocery($event)" /></div> -->
