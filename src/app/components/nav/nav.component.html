@@ -1,9 +1,18 @@
 <nav>
-  <h2>Site Name</h2>
   <ul>
-    <li><a class="active" href="#home">Home</a></li>
-    <li><a href="#news">News</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#about">About</a></li>
+    <li>
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="/"
+        >Home</a
+      >
+    </li>
+    <li><a routerLinkActive="active" routerLink="news">News</a></li>
+    <li><a routerLinkActive="active" routerLink="contact">Contact</a></li>
+    <li><a routerLinkActive="active" routerLink="about">About</a></li>
+    <li><a routerLinkActive="active" routerLink="grocery">Grocery</a></li>
+    <li><a routerLinkActive="active" routerLink="posts">Posts</a></li>
+    <li><a routerLinkActive="active" routerLink="login">Login</a></li>
   </ul>
 </nav>

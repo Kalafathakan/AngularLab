@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  GroceryDataService,
+  IGrocery,
+} from 'src/app/Services/grocery-data.service';
+import {
   NgForm,
   FormGroup,
   FormControl,
@@ -15,39 +19,12 @@ import { from } from 'rxjs';
 })
 export class GroceryComponent implements OnInit {
   searchValue: string = '';
-  grocery = [
-    {
-      name: 'Apples',
-      quantity: 2,
-      id: 1,
-    },
-    {
-      name: 'Eggs',
-      quantity: 4,
-      id: 2,
-    },
-    {
-      name: 'Oranges',
-      quantity: 3,
-      id: 3,
-    },
-    {
-      name: 'Cucumber',
-      quantity: 2,
-      id: 4,
-    },
-  ];
-  constructor() {}
+  grocery: IGrocery[] = [];
+  constructor(private groceryservice: GroceryDataService) {}
 
-  groceryForm = new FormGroup({
-    name: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
-    quantity: new FormControl<number | null>(null, Validators.required),
-  });
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.grocery = this.groceryservice.getGrocery();
+  }
   deleteGrocery(id: number) {
     console.log(id);
     this.grocery = this.grocery.filter((g) => g.id !== id);
@@ -90,12 +67,12 @@ export class GroceryComponent implements OnInit {
     });
     form.reset();
   }
-  onSubmit2() {
-    console.log(this.groceryForm);
-    this.grocery.push({
-      id: 45,
-      name: this.groceryForm.value.name!,
-      quantity: this.groceryForm.value.quantity!,
-    });
-  }
+  // onSubmit2() {
+  //   console.log(this.groceryForm);
+  //   this.grocery.push({
+  //     id: 45,
+  //     name: this.groceryForm.value.name!,
+  //     quantity: this.groceryForm.value.quantity!,
+  //   });
+  // }
 }
