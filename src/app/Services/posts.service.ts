@@ -18,4 +18,13 @@ export class PostsService {
   getPosts(): Observable<IPost[]> {
     return this.http.get<IPost[]>(this.url);
   }
+
+  addPost(): Observable<IPost> {
+    return this.http.post<IPost>(this.url, {
+      title: 'aaa',
+      body: 'bbb',
+      userId: 1,
+      id: 1,
+    });
+  }
 }

@@ -15,4 +15,8 @@ export class PostsComponent implements OnInit {
       this.posts = data;
     });
   }
+
+  addPost() {
+    this.myPostService.addPost().subscribe((data) => console.log(data));
+  }
 }
