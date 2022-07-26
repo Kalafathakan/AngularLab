@@ -10,7 +10,9 @@
     </li>
     <li><a routerLinkActive="active" routerLink="news">News</a></li>
     <li><a routerLinkActive="active" routerLink="contact">Contact</a></li>
-    <li><a routerLinkActive="active" routerLink="about">About</a></li>
+    <li *ngIf="isLoggedIn">
+      <a routerLinkActive="active" routerLink="about">About</a>
+    </li>
     <li><a routerLinkActive="active" routerLink="grocery">Grocery</a></li>
     <li><a routerLinkActive="active" routerLink="posts">Posts</a></li>
     <li><a routerLinkActive="active" routerLink="login">Login</a></li>
